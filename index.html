@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairos ご提案 | Shopify × LINE／エルメ連携 — 一本の糸で、衣装とお客様をつなぐ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1C2B3A;
+    --ink:#2E2E38;
+    --sand:#F2EBDD;
+    --cream:#FAF6EE;
+    --vermilion:#C2552F;
+    --gold:#B8935A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    line-height:1.85;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.mincho{
+    font-family:'Shippori Mincho', serif;
+  }
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ===== 糸の装飾 ===== */
+  .thread-line{
+    position:relative;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin:60px auto;
+    width:60%;
+  }
+  .musubi{
+    display:inline-block;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #e0b27a, var(--gold) 60%, #8f6d3f);
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(194,85,47,0.18), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(184,147,90,0.22), transparent 50%),
+      linear-gradient(160deg, #182331 0%, var(--navy) 45%, #223246 100%);
+    color:var(--cream);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:120px 24px 100px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    width:420px;height:420px;
+    border:1px solid rgba(184,147,90,0.35);
+    border-radius:50%;
+    top:-120px; right:-140px;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    width:260px;height:260px;
+    border:1px solid rgba(194,85,47,0.3);
+    border-radius:50%;
+    bottom:-100px; left:-80px;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    max-width:780px;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    letter-spacing:0.3em;
+    color:var(--gold);
+    margin-bottom:28px;
+    font-weight:500;
+  }
+  .eyebrow .line{
+    width:36px;height:1px;background:var(--gold);
+  }
+  .hero h1{
+    font-size:clamp(28px, 5vw, 50px);
+    font-weight:700;
+    line-height:1.6;
+    margin-bottom:28px;
+    letter-spacing:0.02em;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--vermilion);
+    background:linear-gradient(180deg, transparent 62%, rgba(194,85,47,0.35) 62%);
+  }
+  .hero p.lead{
+    font-size:15.5px;
+    color:#D9D2C2;
+    max-width:560px;
+    margin:0 auto 44px;
+  }
+  .hero .tag{
+    display:inline-block;
+    padding:10px 26px;
+    border:1px solid rgba(250,246,238,0.35);
+    border-radius:999px;
+    font-size:13px;
+    letter-spacing:0.08em;
+  }
+
+  /* ===== section common ===== */
+  section{
+    padding:110px 0;
+    position:relative;
+  }
+  .section-head{
+    text-align:center;
+    margin-bottom:64px;
+  }
+  .section-head .num{
+    font-family:'Shippori Mincho', serif;
+    font-size:13px;
+    letter-spacing:0.3em;
+    color:var(--vermilion);
+    display:block;
+    margin-bottom:14px;
+  }
+  .section-head h2{
+    font-size:clamp(24px,3.6vw,34px);
+    color:var(--navy);
+    font-weight:700;
+  }
+  .section-head p{
+    margin-top:18px;
+    color:#5c5c66;
+    font-size:14.5px;
+  }
+
+  /* ===== 理解セクション ===== */
+  .understand{
+    background:var(--sand);
+  }
+  .understand-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  .understand-card{
+    background:var(--cream);
+    border:1px solid rgba(28,43,58,0.08);
+    border-radius:4px;
+    padding:36px 32px;
+    position:relative;
+  }
+  .understand-card::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    width:3px;height:100%;
+    background:var(--gold);
+  }
+  .understand-card h3{
+    font-size:17px;
+    color:var(--navy);
+    margin-bottom:14px;
+    font-weight:700;
+  }
+  .understand-card p{
+    font-size:14px;
+    color:#50505c;
+  }
+  .flow-quote{
+    margin-top:60px;
+    background:var(--navy);
+    color:var(--cream);
+    border-radius:4px;
+    padding:44px 40px;
+    text-align:center;
+  }
+  .flow-quote .steps{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    font-family:'Shippori Mincho', serif;
+    font-size:14.5px;
+    letter-spacing:0.02em;
+    margin-top:18px;
+  }
+  .flow-quote .steps span.arrow{
+    color:var(--gold);
+  }
+  .flow-quote .steps .step{
+    background:rgba(250,246,238,0.08);
+    border:1px solid rgba(184,147,90,0.4);
+    padding:8px 16px;
+    border-radius:3px;
+  }
+
+  /* ===== value cards ===== */
+  .values{
+    background:var(--cream);
+  }
+  .value-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  .value-card{
+    background:linear-gradient(180deg, #ffffff, var(--sand));
+    border:1px solid rgba(28,43,58,0.08);
+    padding:38px 28px;
+    border-radius:6px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .value-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 30px rgba(28,43,58,0.12);
+  }
+  .value-icon{
+    width:46px;height:46px;
+    border-radius:50%;
+    background:conic-gradient(from 180deg, var(--vermilion), var(--gold), var(--vermilion));
+    margin-bottom:22px;
+    position:relative;
+  }
+  .value-icon::after{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border-radius:50%;
+    background:var(--cream);
+  }
+  .value-card h3{
+    font-size:16.5px;
+    color:var(--navy);
+    margin-bottom:12px;
+    font-weight:700;
+  }
+  .value-card p{
+    font-size:13.5px;
+    color:#55555f;
+  }
+  .value-card.wide{
+    grid-column:span 1;
+  }
+
+  /* ===== schedule ===== */
+  .schedule{
+    background:var(--navy);
+    color:var(--cream);
+  }
+  .schedule .section-head h2{color:var(--cream);}
+  .schedule .section-head p{color:#B7BFC9;}
+  .timeline{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+    margin-top:20px;
+  }
+  .tl-item{
+    background:rgba(250,246,238,0.05);
+    border:1px solid rgba(184,147,90,0.35);
+    border-radius:6px;
+    padding:30px 22px;
+    position:relative;
+  }
+  .tl-item .week{
+    font-family:'Shippori Mincho', serif;
+    color:var(--gold);
+    font-size:13px;
+    letter-spacing:0.15em;
+    margin-bottom:10px;
+    display:block;
+  }
+  .tl-item h4{
+    font-size:16px;
+    margin-bottom:12px;
+    font-weight:700;
+  }
+  .tl-item p{
+    font-size:12.8px;
+    color:#CBD2D9;
+  }
+  .tl-item:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top:50%; right:-24px;
+    width:24px;height:1px;
+    background:var(--gold);
+  }
+
+  /* ===== closing ===== */
+  .closing{
+    background:
+      radial-gradient(circle at 20% 30%, rgba(194,85,47,0.12), transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(184,147,90,0.15), transparent 50%),
+      var(--sand);
+    text-align:center;
+  }
+  .closing h2{
+    font-size:clamp(24px,4vw,36px);
+    color:var(--navy);
+    margin-bottom:20px;
+  }
+  .closing p{
+    color:#54545e;
+    max-width:560px;
+    margin:0 auto 42px;
+    font-size:14.5px;
+  }
+  .cta-box{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    background:var(--cream);
+    border:1px solid rgba(28,43,58,0.1);
+    padding:44px 56px;
+    border-radius:8px;
+    box-shadow:0 20px 50px rgba(28,43,58,0.08);
+  }
+  .cta-btn{
+    display:inline-block;
+    background:var(--vermilion);
+    color:var(--cream);
+    padding:16px 44px;
+    border-radius:999px;
+    font-size:15px;
+    letter-spacing:0.1em;
+    font-weight:700;
+    box-shadow:0 10px 24px rgba(194,85,47,0.35);
+    transition:transform .2s ease;
+  }
+  .cta-btn:hover{transform:translateY(-3px);}
+  .cta-note{
+    font-size:12.5px;
+    color:#80808c;
+  }
+
+  footer{
+    background:var(--ink);
+    color:#A9A9B2;
+    text-align:center;
+    padding:36px 24px;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+  }
+  footer strong{color:var(--gold);}
+
+  @media (max-width:860px){
+    .understand-grid{grid-template-columns:1fr;}
+    .value-grid{grid-template-columns:1fr;}
+    .timeline{grid-template-columns:1fr;}
+    .tl-item:not(:last-child)::after{display:none;}
+    .cta-box{padding:34px 26px;width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="line"></span>KAIROS PROPOSAL<span class="line"></span></div>
+    <h1>衣装を結ぶ糸を、<br>データでも<em>結び直す</em>。</h1>
+    <p class="lead">
+      お客様が一着の衣装を選ぶように、私たちは最適なツールを一つひとつ選び、
+      Shopify・LINE・L Message（エルメ）を一本の線でつなぎます。
+      hanahana2020様のレンタルサービス移行、Kairosにご提案させてください。
+    </p>
+    <span class="tag">Shopify制作 × LINE連携 × エルメ構築 ご提案書</span>
+  </div>
+</section>
+
+<section class="understand">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">01 ― 理解</span>
+      <h2>この募集、何が本質的に難しいか分かっています。</h2>
+      <p>単なるShopify制作でも、単なるLINE連携でもない。「衣装選択」という複雑なUXと、「購入者とLINE友だちの自動紐付け」という技術的な橋渡し、その両方が同時に求められています。</p>
+    </div>
+
+    <div class="understand-grid">
+      <div class="understand-card">
+        <h3>衣装レンタルならではのUI要件</h3>
+        <p>写真を見ながらオプション衣装を選ぶ体験は、単純なバリエーション選択とは異なります。在庫連携・口コミ（星評価／写真）の移行表示まで含め、「既存サイトの体験を落とさず、むしろスマホで磨く」ことが前提だと理解しています。</p>
+      </div>
+      <div class="understand-card">
+        <h3>紐付けの"自動化"が本丸</h3>
+        <p>購入完了ページ→LINE誘導→エルメへの反映という流れは、仕組みそのものより「新規・既存どちらの友だちにも対応できるか」「月額コストを抑えられるか」が鍵。ここを曖昧にしたまま制作だけ進める提案はしません。</p>
+      </div>
+    </div>
+
+    <div class="flow-quote">
+      <p class="mincho" style="font-size:15px;letter-spacing:.05em;">実現したい一連の流れを、私たちも同じ解像度で描いています。</p>
+      <div class="steps">
+        <span class="step">商品・衣装選択</span><span class="arrow">→</span>
+        <span class="step">購入完了</span><span class="arrow">→</span>
+        <span class="step">LINE連携ボタン</span><span class="arrow">→</span>
+        <span class="step">注文×LINE自動紐付け</span><span class="arrow">→</span>
+        <span class="step">エルメ反映・タグ付け</span><span class="arrow">→</span>
+        <span class="step">自動メッセージ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">02 ― 提案</span>
+      <h2>Kairosがこの案件に持ち込めること</h2>
+      <p>Shopify構築力とLINE／エルメ連携の実装力、その両方を一つのチームで完結させます。</p>
+    </div>
+
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon"></div>
+        <h3>衣装選択・在庫対応の商品ページ</h3>
+        <p>写真付きオプション選択をスマホ前提で設計。選択した衣装情報をShopify注文データに保存し、在庫管理アプリとの連携も含めて構築します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"></div>
+        <h3>口コミ（星評価・写真）移行</h3>
+        <p>既存サイトの口コミ資産を、表示崩れなくShopifyテーマへ移行。レビューアプリの選定から表示デザインまで一貫対応します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"></div>
+        <h3>Thank youページ起点のLINE誘導設計</h3>
+        <p>注文情報を含む遷移URLを動的生成し、「LINEと連携する」ボタンから既存・新規どちらの友だちも自動紐付けできる仕組みを構築します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"></div>
+        <h3>L Message（エルメ）パラメーター連携</h3>
+        <p>パラメーターインポートを軸に、注文番号・商品・選択衣装・注文日をエルメの友だち情報へ自動反映。タグ付け・自動メッセージ送信まで設計します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"></div>
+        <h3>月額コストを抑えた構成提案</h3>
+        <p>Shopify Flow／Make／Zapier／カスタム実装を比較検討し、運用後の月額費用が最小になる構成を選定。ランニングコストまで見据えてご提案します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"></div>
+        <h3>こまめな進捗共有での伴走</h3>
+        <p>完成部分から順次共有し、相談しながら進める進行スタイル。1か月という短期スケジュールでも、認識のズレが生まれない体制を作ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="schedule">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">03 ― 進め方</span>
+      <h2>契約から1か月、糸をたぐるように進めます</h2>
+      <p>すべてを一度に見せるのではなく、できた部分から順次ご確認いただくスタイルで進行します。</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="week">WEEK 1</span>
+        <h4>要件すり合わせ・設計</h4>
+        <p>既存サイトの仕様確認、衣装選択・在庫・口コミ移行の要件定義。LINE／エルメ連携方式の最終決定。</p>
+      </div>
+      <div class="tl-item">
+        <span class="week">WEEK 2</span>
+        <h4>Shopify構築</h4>
+        <p>商品ページ・衣装選択機能・口コミ表示を実装。スマホ表示を都度共有しながら調整します。</p>
+      </div>
+      <div class="tl-item">
+        <span class="week">WEEK 3</span>
+        <h4>LINE・エルメ連携実装</h4>
+        <p>Thank youページからの遷移、注文情報の紐付け、エルメへの自動反映・タグ付けを構築。</p>
+      </div>
+      <div class="tl-item">
+        <span class="week">WEEK 4</span>
+        <h4>テスト・既存友だち対応</h4>
+        <p>既存LINE友だちの紐付け確認、自動メッセージのテスト送信、最終調整の上で公開。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>応募5項目、まずは率直にお答えします</h2>
+    <p>
+      実現可能性・連携方式・実績・費用・納期について、曖昧なまま進める提案はしません。
+      まずは一度、現状のサイトとエルメの設定状況をお伺いするところから始めさせてください。
+    </p>
+    <div class="cta-box">
+      <a href="#" class="cta-btn">Kairosに相談・応募する</a>
+      <span class="cta-note">制作費・月額費用の概算、連携方式の詳細は個別にご回答いたします</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Kairos</strong> ― Web制作・システム開発チーム ｜ ご提案資料
+</footer>
+
+</body>
+</html>
